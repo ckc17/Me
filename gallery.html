@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Gallery</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: pink;
+            color: black;
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            margin: 0;
+        }
+        h1 {
+            font-size: 3em;
+            margin-top: 20px;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 80%;
+            margin: auto;
+            margin-top: 30px;
+        }
+        .slide {
+            display: none;
+            width: 100%;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 10px;
+            margin-top: -22px;
+            color: white;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 5px;
+        }
+        .next {
+            right: 10px;
+        }
+        .prev {
+            left: 10px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Gallery</h1>
+
+    <!-- Music Player (Auto Plays on Load) -->
+    <audio id="background-music" autoplay loop>
+        <source src="Melting(256k) (mp3cut.net).mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Slideshow -->
+    <div class="slideshow-container">
+        <img class="slide" src="IMG-20250305-WA0047.jpg " alt="Image 1">
+        <img class="slide" src="IMG-20250224-WA0124.jpg" alt="Image 2">
+        <img class="slide" src="IMG-20250222-WA0006.jpg" alt="Image 3">
+
+        <!-- Navigation Buttons -->
+        <a class="prev" onclick="changeSlide(-1)">❮</a>
+        <a class="next" onclick="changeSlide(1)">❯</a>
+    </div>
+
+    <!-- JavaScript for Slideshow -->
+    <script>
+        let slideIndex = 0;
+        let slides = document.getElementsByClassName("slide");
+
+        function showSlides() {
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 5000); // Change image every 5 seconds
+        }
+
+        function changeSlide(n) {
+            slideIndex += n - 1;
+            showSlides();
+        }
+
+        showSlides(); // Start slideshow when page loads
+    </script>
+
+</body>
+</html>
